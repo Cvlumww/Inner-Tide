@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const ROTATE_MS = 4000;
+const PAUSE_AFTER_CLICK_MS = 5000;
 
 function ArrowPrev() {
   return (
@@ -23,24 +24,53 @@ function ArrowNext() {
 
 export default function GallerySection({ images }) {
   const [index, setIndex] = useState(0);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [clickPaused, setClickPaused] = useState(false);
+  const intervalRef = useRef(null);
+
+  const paused = hoverPaused || clickPaused;
 
   useEffect(() => {
-    if (!images?.length) return;
-    const id = setInterval(() => {
+    if (!images?.length || paused) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
+    }
+    intervalRef.current = setInterval(() => {
       setIndex((i) => (i + 1) % images.length);
     }, ROTATE_MS);
-    return () => clearInterval(id);
-  }, [images?.length]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [images?.length, paused]);
 
   if (!images?.length) return null;
 
-  const goPrev = () => setIndex((i) => (i - 1 + images.length) % images.length);
-  const goNext = () => setIndex((i) => (i + 1) % images.length);
+  const goPrev = () => {
+    setIndex((i) => (i - 1 + images.length) % images.length);
+    setClickPaused(true);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    setTimeout(() => setClickPaused(false), PAUSE_AFTER_CLICK_MS);
+  };
+  const goNext = () => {
+    setIndex((i) => (i + 1) % images.length);
+    setClickPaused(true);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    setTimeout(() => setClickPaused(false), PAUSE_AFTER_CLICK_MS);
+  };
 
   return (
     <section className="gallery-section" id="gallery">
       <h2 className="section-heading">Gallery</h2>
-      <div className="gallery-carousel-wrap">
+      <div
+        className="gallery-carousel-wrap"
+        onMouseEnter={() => setHoverPaused(true)}
+        onMouseLeave={() => setHoverPaused(false)}
+      >
         <button
           type="button"
           className="gallery-arrow gallery-arrow--prev"
@@ -61,9 +91,11 @@ export default function GallerySection({ images }) {
                 src={src}
                 alt=""
                 fill
-                sizes="(max-width: 768px) 100vw, 80vw"
+                sizes="(max-width: 768px) 100vw, min(80vw, 900px)"
                 style={{ objectFit: "cover" }}
                 priority={i === 0}
+                quality={82}
+                fetchPriority={i === 0 ? "high" : undefined}
               />
             </div>
           ))}

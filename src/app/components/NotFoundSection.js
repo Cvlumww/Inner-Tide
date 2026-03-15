@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 const ROTATE_MS = 5000;
 
-export default function HeroSection({ images }) {
+export default function notFoundSection({ images }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -21,11 +22,10 @@ export default function HeroSection({ images }) {
       <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__content">
-          <h1 className="hero__title">Inner Tide Studios</h1>
-          <p className="hero__tagline">
-            Mindful, strength-focused Reformer Pilates in the heart of
-            Finnieston. Find your balance in Glasgow’s West End.
-          </p>
+          <h1 className="hero__title">Page not Found</h1>
+          <Link href="/" className="hero__tagline">
+            Go Back?
+          </Link>
         </div>
       </section>
     );
@@ -54,11 +54,10 @@ export default function HeroSection({ images }) {
       </div>
       <div className="hero__overlay" />
       <div className="hero__content">
-        <h1 className="hero__title">Inner Tide Studios</h1>
-        <p className="hero__tagline">
-          Mindful, strength-focused Reformer Pilates in the heart of Finnieston.
-          Find your balance in Glasgow’s West End.
-        </p>
+        <h1 className="hero__title">Page not Found</h1>
+        <Link href="/" className="hero__tagline">
+          Go Back?
+        </Link>
       </div>
     </section>
   );

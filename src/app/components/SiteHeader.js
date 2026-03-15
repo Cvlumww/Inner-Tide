@@ -5,9 +5,9 @@ import Image from "next/image";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
-  { href: "#booking", label: "Booking" },
+  // { href: "#booking", label: "Booking" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#contact", label: "Contact" },
+  { href: "#find-us", label: "Find Us" },
 ];
 
 export default function SiteHeader() {
@@ -27,6 +27,7 @@ export default function SiteHeader() {
           height={48}
           className="site-header__logo"
           priority
+          quality={90}
         />
       </a>
 

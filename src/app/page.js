@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import GallerySection from "./components/GallerySection";
-import ContactForm from "./components/ContactForm";
+import FindUsSection from "./components/FindUsSection";
 import HeroSection from "./components/HeroSection";
 import SiteHeader from "./components/SiteHeader";
 
@@ -78,7 +78,7 @@ export default function Home() {
         </section>
 
         <GallerySection images={galleryImages} />
-        <ContactForm />
+        <FindUsSection />
       </main>
 
       <footer className="site-footer">

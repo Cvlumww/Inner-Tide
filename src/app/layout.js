@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://inner-tide.studio"),
   title: "Inner Tide Studios | Reformer Pilates, Finnieston Glasgow",
   description:
     "Inner Tide Studios | Glasgow's newest Reformer Pilates studio. Located in the West End of Glasgow. Book your session now.",
