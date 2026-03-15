@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Inner Tide Studios | Reformer Pilates, Finnieston Glasgow",
   description:
-    "Inner Tide Studios — reformer pilates studio in Finnieston, Glasgow's West End. Book your session.",
+    "Inner Tide Studios | Glasgow's newest Reformer Pilates studio. Located in the West End of Glasgow. Book your session now.",
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/favicon.ico",
   },
   openGraph: {
     title: "Inner Tide Studios | Reformer Pilates, Finnieston Glasgow",
     description:
-      "Reformer pilates studio in Finnieston, Glasgow's West End.",
-    images: "/favicon.jpg",
+      "Inner Tide Studios | Glasgow's newest Reformer Pilates studio. Located in the West End of Glasgow. Book your session now.",
+    images: [{ url: "/favicon.ico" }],
     url: "https://inner-tide.studio",
     siteName: "Inner Tide Studios",
     locale: "en_GB",
