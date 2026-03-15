@@ -1,0 +1,504 @@
+// -----------------------------------------------------------------------------
+// Inner Tide Studios — Reformer Pilates, Finnieston, Glasgow
+// Brand: #adc2cf (light blue/slate) #7a94b0 (slate deep) #f8efe9 (cream) #e1d5cc (warm)
+// -----------------------------------------------------------------------------
+
+:root {
+  --color-slate: #adc2cf;
+  --color-slate-deep: #7a94b0;
+  --color-cream: #f8efe9;
+  --color-warm: #e1d5cc;
+  --foreground: #2c2c2c;
+  --muted: #5a5a5a;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--color-cream);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// -----------------------------------------------------------------------------
+// Header — logo left, menu right; mobile hamburger with dropdown
+// -----------------------------------------------------------------------------
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-warm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header__logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+// Hamburger button — visible only on mobile
+.site-header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 102;
+  transition: transform 0.2s;
+}
+
+.site-header__hamburger:focus-visible {
+  outline: 2px solid var(--color-slate-deep);
+  outline-offset: 2px;
+}
+
+.site-header__hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--foreground);
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+// Hamburger → X when open
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.site-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.site-header__nav a {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--foreground);
+  transition: color 0.2s;
+}
+
+.site-header__nav a:hover {
+  color: var(--color-slate-deep);
+}
+
+// Mobile: show hamburger, hide nav by default, show as dropdown when open
+@media (max-width: 768px) {
+  .site-header__hamburger {
+    display: flex;
+  }
+
+  .site-header__nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--color-cream);
+    padding: 5rem 1.5rem 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 101;
+  }
+
+  .site-header__nav--open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-header__nav-list {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .site-header__nav {
+    display: block;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Hero — rotating background carousel + light blue overlay
+// -----------------------------------------------------------------------------
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__carousel {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero__carousel-slide[data-active="true"] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero__carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  // background: rgba(173, 194, 207, 0.55);
+  background: var(--color-slate-deep);
+  opacity: 0.55;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: var(--foreground);
+  padding: 2rem;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero__tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--foreground);
+  opacity: 0.95;
+  max-width: 420px;
+  margin: 0 auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+// -----------------------------------------------------------------------------
+// Main content sections
+// -----------------------------------------------------------------------------
+.main-content {
+  flex: 1;
+}
+
+.section {
+  padding: 4rem 1.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--foreground);
+}
+
+// About
+#about {
+  background: var(--color-cream);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.about-content p {
+  margin: 0;
+}
+
+// Booking
+#booking {
+  background: var(--color-warm);
+}
+
+.coming-soon {
+  color: var(--muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.embed-wrap,
+.embed-iframe {
+  width: 100%;
+  min-height: 400px;
+  border: none;
+  border-radius: 8px;
+}
+
+// Gallery section
+.gallery-section {
+  padding: 4rem 1.5rem;
+  background: var(--color-warm);
+}
+
+.gallery-section .section-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-carousel-wrap {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.gallery-slide[data-active="true"] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Gallery arrow buttons — left and right of carousel
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-slate-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.gallery-arrow:hover {
+  background: var(--color-slate);
+  color: var(--foreground);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-arrow:focus-visible {
+  outline: 2px solid var(--color-slate-deep);
+  outline-offset: 2px;
+}
+
+.gallery-arrow--prev {
+  left: -24px;
+}
+
+.gallery-arrow--next {
+  right: -24px;
+}
+
+@media (max-width: 640px) {
+  .gallery-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery-arrow--prev {
+    left: 8px;
+  }
+
+  .gallery-arrow--next {
+    right: 8px;
+  }
+}
+
+// Contact section
+.contact-section {
+  padding: 4rem 1.5rem;
+  background: var(--color-cream);
+}
+
+.contact-section .section-heading {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.contact-subheading {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-warm);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  color: var(--foreground);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-slate-deep);
+  box-shadow: 0 0 0 2px rgba(122, 148, 176, 0.2);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-feedback-error {
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.contact-feedback-success {
+  color: #15803d;
+  font-size: 0.9rem;
+}
+
+.contact-form button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  background: var(--color-slate-deep);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+}
+
+.contact-form button[type="submit"]:hover:not(:disabled) {
+  background: var(--color-slate);
+  color: var(--foreground);
+}
+
+.contact-form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+// -----------------------------------------------------------------------------
+// Footer
+// -----------------------------------------------------------------------------
+.site-footer {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  background: var(--color-slate-deep);
+  color: #fff;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Page wrapper
+// -----------------------------------------------------------------------------
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: var(--color-cream);
+}

@@ -1,66 +1,89 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import fs from "fs";
+import path from "path";
+import GallerySection from "./components/GallerySection";
+import ContactForm from "./components/ContactForm";
+import HeroSection from "./components/HeroSection";
+import SiteHeader from "./components/SiteHeader";
+
+function getGalleryImages() {
+  try {
+    const dir = path.join(process.cwd(), "public", "gallery-images");
+    const files = fs.readdirSync(dir);
+    return files
+      .filter((f) => /\.(jpe?g|png|webp|gif)$/i.test(f))
+      .sort()
+      .map((f) => `/gallery-images/${f}`);
+  } catch {
+    return [];
+  }
+}
+
+function getHeroImages() {
+  try {
+    const dir = path.join(process.cwd(), "public", "hero-images");
+    const files = fs.readdirSync(dir);
+    return files
+      .filter((f) => /\.(jpe?g|png|webp|gif)$/i.test(f))
+      .sort((a, b) => {
+        const numA = parseInt(a.replace(/\D/g, ""), 10) || 0;
+        const numB = parseInt(b.replace(/\D/g, ""), 10) || 0;
+        return numA - numB;
+      })
+      .map((f) => `/hero-images/${f}`);
+  } catch {
+    return [];
+  }
+}
 
 export default function Home() {
+  const galleryImages = getGalleryImages();
+  const heroImages = getHeroImages();
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="page">
+      <SiteHeader />
+
+      <HeroSection images={heroImages} />
+
+      <main className="main-content">
+        <section className="section" id="about">
+          <h2 className="section-heading">About</h2>
+          <div className="about-content">
+            <p>
+              Inner Tide Studios is a reformer pilates studio that has just
+              opened in Finnieston, in the West End of Glasgow. We offer
+              mindful, strength-building sessions on the reformer in a calm,
+              welcoming space.
+            </p>
+            <p>
+              Whether you&apos;re new to reformer pilates or looking to deepen
+              your practice, we&apos;d love to see you. Get in touch or book a
+              session below.
+            </p>
+          </div>
+        </section>
+
+        <section className="section" id="booking">
+          <h2 className="section-heading">Booking</h2>
+          <p className="coming-soon">Coming soon</p>
+          {/* When ready, replace the "Coming soon" block above with your booking embed, e.g.:
+          <div className="embed-wrap" dangerouslySetInnerHTML={{ __html: YOUR_EMBED_HTML }} />
+          Or use an iframe:
+          <iframe
+            src="YOUR_BOOKING_EMBED_URL"
+            title="Book a session"
+            className="embed-iframe"
+          />
+          */}
+        </section>
+
+        <GallerySection images={galleryImages} />
+        <ContactForm />
       </main>
+
+      <footer className="site-footer">
+        <p>Inner Tide Studios — Reformer Pilates, Finnieston, Glasgow</p>
+      </footer>
     </div>
   );
 }
