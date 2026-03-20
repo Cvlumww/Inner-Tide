@@ -1,6 +1,6 @@
 export default function FindUsSection() {
   const mapSrc =
-    "https://www.google.com/maps?q=17+Fitzroy+Place,Glasgow,UK&z=16&output=embed";
+    "https://www.google.com/maps?q=16+Fitzroy+Place,Glasgow,UK&z=16&output=embed";
 
   return (
     <section className="find-us-section" id="find-us">
@@ -8,13 +8,13 @@ export default function FindUsSection() {
         <div className="find-us__content">
           <h2 className="section-heading">Find Us</h2>
           <p className="find-us__text">
-            We&apos;re in the heart of Finnieston at 17 Fitzroy Place, with
-            easy access from the West End and city centre.
+            We&apos;re in the heart of Finnieston at 16 Fitzroy Place, with easy
+            access from the West End and city centre.
           </p>
           <address className="find-us__address">
             <strong>Inner Tide Studios</strong>
             <br />
-            17 Fitzroy Place
+            16 Fitzroy Place
             <br />
             Glasgow
           </address>

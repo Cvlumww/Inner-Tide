@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
+import BookingPlaceholderSection from "./components/BookingPlaceholderSection";
+import BookingSection from "./components/BookingSection";
 import GallerySection from "./components/GallerySection";
 import FindUsSection from "./components/FindUsSection";
+import MemberProfileGate from "./components/MemberProfileGate";
+import MemberProfileSection from "./components/MemberProfileSection";
 import HeroSection from "./components/HeroSection";
 import SiteHeader from "./components/SiteHeader";
 
@@ -63,21 +67,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="booking">
+        <section className="section section--booking" id="booking">
           <h2 className="section-heading">Booking</h2>
-          <p className="coming-soon">Coming soon</p>
-          {/* When ready, replace the "Coming soon" block above with your booking embed, e.g.:
-          <div className="embed-wrap" dangerouslySetInnerHTML={{ __html: YOUR_EMBED_HTML }} />
-          Or use an iframe:
-          <iframe
-            src="YOUR_BOOKING_EMBED_URL"
-            title="Book a session"
-            className="embed-iframe"
-          />
-          */}
+          <BookingSection />
         </section>
 
         <GallerySection images={galleryImages} />
+        {/* <BookingPlaceholderSection /> */}
+        <MemberProfileGate>
+          <MemberProfileSection />
+        </MemberProfileGate>
         <FindUsSection />
       </main>
 
