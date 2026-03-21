@@ -47,7 +47,7 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  background: var(--color-cream);
+  background: var(--color-slate);
   border-bottom: 1px solid var(--color-warm);
   position: sticky;
   top: 0;
@@ -207,8 +207,8 @@ a {
   width: 100%;
   min-height: 85vh;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -253,13 +253,13 @@ a {
 .hero__content {
   position: relative;
   z-index: 3;
-  text-align: left;
+  text-align: center;
   // background-color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(248, 239, 233, 0.75);
+  // background-color: rgba(248, 239, 233, 0.75);
 
   padding: 2rem 3rem;
   border-radius: 12px;
-  margin: 0 0 5rem 1.5rem;
+  margin: 2rem;
 
   max-width: 620px;
 
@@ -274,17 +274,32 @@ a {
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  color: var(--color-slate-deep);
+  color: var(--color-cream);
 }
 
 .hero__tagline {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--color-slate-deep);
+  color: var(--color-cream);
 
   opacity: 0.95;
   // max-width: 420px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.hero__button {
+  background: var(--color-slate);
+  color: var(--color-cream);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s ease-in-out;
+  &:hover {
+    background: var(--color-slate-deep);
+    color: var(--color-cream);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -304,7 +319,7 @@ a {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
-  color: var(--foreground);
+  color: var(--color-slate-deep);
 }
 
 // About
@@ -374,7 +389,9 @@ a {
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 .booking-actions__btn:hover {
@@ -628,6 +645,10 @@ a {
   font-style: normal;
   color: var(--foreground);
   line-height: 1.6;
+
+  strong {
+    color: var(--color-slate-deep);
+  }
 }
 
 .find-us__address a,
@@ -685,6 +706,18 @@ a {
 
 .site-footer p {
   margin: 0;
+}
+
+.site-footer__link {
+  color: var(--color-cream);
+  text-decoration: underline;
+  &:hover {
+    color: var(--color-slate);
+  }
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding-top: 0.8rem;
 }
 
 // -----------------------------------------------------------------------------

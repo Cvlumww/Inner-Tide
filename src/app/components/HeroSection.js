@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ROTATE_MS = 5000;
 
@@ -59,6 +60,10 @@ export default function HeroSection({ images }) {
           Mindful, strength-focused Reformer Pilates in the heart of Finnieston.
           Find your balance in Glasgow’s West End.
         </p>
+
+        <Link href="/#booking" className="hero__button">
+          Book a session
+        </Link>
       </div>
     </section>
   );

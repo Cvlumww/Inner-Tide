@@ -24,7 +24,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <a href="/" aria-label="Inner Tide Studios home">
         <Image
-          src="/logos/light-blue-real.png"
+          src="/logos/cream.png"
           alt="Inner Tide Studios"
           width={160}
           height={48}

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import Link from "next/link";
 import BookingPlaceholderSection from "./components/BookingPlaceholderSection";
 import BookingSection from "./components/BookingSection";
 import GallerySection from "./components/GallerySection";
@@ -51,18 +52,47 @@ export default function Home() {
 
       <main className="main-content">
         <section className="section" id="about">
-          <h2 className="section-heading">About</h2>
+          <h2 className="section-heading">About Innertide Studios</h2>
           <div className="about-content">
             <p>
-              Inner Tide Studios is a reformer pilates studio that has just
-              opened in Finnieston, in the West End of Glasgow. We offer
-              mindful, strength-building sessions on the reformer in a calm,
-              welcoming space.
+              Innertide Studios is a boutique reformer Pilates studio created to
+              strengthen the body and soften the mind. Designed as a calm and
+              welcoming space, the studio invites you to step away from the pace
+              of everyday life and reconnect with yourself through mindful
+              movement.
             </p>
+
             <p>
-              Whether you&apos;re new to reformer pilates or looking to deepen
-              your practice, we&apos;d love to see you. Get in touch or book a
-              session below.
+              Our reformer Pilates classes focus on building strength, improving
+              mobility, and creating balance throughout the body. Using
+              small-group reformer sessions, we provide a supportive environment
+              where every client can move with control, confidence, and
+              intention. Whether you are completely new to reformer Pilates or
+              looking to deepen your practice, our classes are designed to
+              support all levels.
+            </p>
+
+            <p>
+              At Innertide, we believe taking time to prioritise yourself is
+              essential. Pilates offers a powerful way to improve posture,
+              develop core strength, and support both physical and mental
+              wellbeing. Our aim is to create a space where clients feel
+              stronger, calmer, and more connected to their bodies.
+            </p>
+
+            <p>
+              We offer beginner-friendly reformer Pilates classes, progressive
+              sessions for those looking to challenge themselves, and private
+              1:1 reformer sessions for a more personalised experience. With a
+              focus on thoughtful movement and a welcoming studio atmosphere,
+              Innertide is a place where you can move with purpose and feel the
+              benefits long after your class ends.{" "}
+            </p>
+
+            <p>
+              Located in Glasgow, Innertide Studios offers small-group reformer
+              Pilates classes and private sessions designed to support strength,
+              balance, and wellbeing
             </p>
           </div>
         </section>
@@ -81,7 +111,13 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <p>Inner Tide Studios — Reformer Pilates, Finnieston, Glasgow</p>
+        <p>
+          Inner Tide Studios — Reformer Pilates, 16 Fitzroy Place, Second Floor,
+          Finnieston, Glasgow, G3 7RW
+        </p>
+        <p className="site-footer__link">
+          Website by <Link href="https://calum.work">Calum Fraser Wardrop</Link>
+        </p>
       </footer>
     </div>
   );

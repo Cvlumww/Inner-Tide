@@ -8,17 +8,21 @@ export default function FindUsSection() {
         <div className="find-us__content">
           <h2 className="section-heading">Find Us</h2>
           <p className="find-us__text">
-            We&apos;re in the heart of Finnieston at 16 Fitzroy Place, with easy
-            access from the West End and city centre.
+            We&apos;re in the heart of Finnieston with easy access from the West
+            End and city centre.
           </p>
           <address className="find-us__address">
             <strong>Inner Tide Studios</strong>
             <br />
             16 Fitzroy Place
             <br />
-            Glasgow
+            Second Floor
+            <br />
+            Finnieston
+            <br />
+            Glasgow, G3 7RW
           </address>
-          <p className="find-us__text find-us__text--small">
+          <p className="find-us__text">
             Get in touch for enquiries at{" "}
             <a href="mailto:emma@inner-tide.studio">emma@inner-tide.studio</a>.
           </p>
