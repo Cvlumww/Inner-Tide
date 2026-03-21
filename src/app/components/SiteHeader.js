@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import BsportEmbed from "./BsportEmbed";
 import { BSPORT_LOGIN } from "@/lib/bsport-configs";
 
@@ -9,7 +10,7 @@ const NAV_LINKS = [
   { href: "#about", label: "About" },
   { href: "#booking", label: "Booking" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#member", label: "Member" },
+  { href: "/member", label: "Member", isRoute: true },
   { href: "#find-us", label: "Find Us" },
 ];
 
@@ -41,11 +42,17 @@ export default function SiteHeader() {
           aria-label="Main"
         >
           <ul className="site-header__nav-list">
-            {NAV_LINKS.map(({ href, label }) => (
+            {NAV_LINKS.map(({ href, label, isRoute }) => (
               <li key={href}>
-                <a href={href} onClick={handleNavClick}>
-                  {label}
-                </a>
+                {isRoute ? (
+                  <Link href={href} onClick={handleNavClick}>
+                    {label}
+                  </Link>
+                ) : (
+                  <a href={href} onClick={handleNavClick}>
+                    {label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>

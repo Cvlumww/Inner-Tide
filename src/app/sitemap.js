@@ -8,6 +8,13 @@ export default async function sitemap() {
     priority: 1,
   };
 
+  const memberPage = {
+    url: `${baseUrl}/member`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  };
+
   let postUrls = [];
   const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
   if (API_URL) {
@@ -29,5 +36,5 @@ export default async function sitemap() {
     }
   }
 
-  return [homepage, ...postUrls];
+  return [homepage, memberPage, ...postUrls];
 }

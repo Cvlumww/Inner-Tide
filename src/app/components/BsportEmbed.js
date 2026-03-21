@@ -15,6 +15,9 @@ export default function BsportEmbed({ config, className = "" }) {
     if (mountedIds.has(id)) return;
     mountedIds.add(id);
     mountBsportWidget(config);
+    return () => {
+      mountedIds.delete(id);
+    };
   }, [id, config]);
 
   return <div id={id} className={className} />;

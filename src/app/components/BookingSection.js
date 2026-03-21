@@ -2,16 +2,16 @@
 
 import { useCallback, useEffect, useId, useState } from "react";
 import { mountBsportWidget } from "@/lib/bsport";
-import {
-  BSPORT_CALENDAR,
-  BSPORT_PASS,
-  BSPORT_PRIVATE_SESSIONS,
-} from "@/lib/bsport-configs";
+import { BSPORT_PASS } from "@/lib/bsport-configs";
 
-const WIDGETS = {
-  calendar: { label: "Book a class", config: BSPORT_CALENDAR },
+/** First booking tile — class schedule: scrolls to calendar below gallery */
+const CLASS_SCHEDULE_BG = "/hero-images/3.JPG";
+
+/** Second tile (passes) — replace when you have an image */
+const PASSES_BG = "/hero-images/2.JPG";
+
+const MODAL_WIDGET = {
   pass: { label: "Passes", config: BSPORT_PASS },
-  private: { label: "Private sessions", config: BSPORT_PRIVATE_SESSIONS },
 };
 
 export default function BookingSection() {
@@ -22,9 +22,16 @@ export default function BookingSection() {
     setActive(null);
   }, []);
 
+  const scrollToCalendar = useCallback(() => {
+    document.getElementById("booking-calendar")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
+
   useEffect(() => {
     if (!active) return undefined;
-    const config = WIDGETS[active].config;
+    const config = MODAL_WIDGET[active].config;
 
     const runMount = () => {
       const el = document.getElementById(config.parentElement);
@@ -53,19 +60,41 @@ export default function BookingSection() {
   return (
     <div className="booking-section">
       <p className="booking-section__intro">
-        Choose an option below to open the booking window.
+        Class schedule is below the gallery. Use Passes to buy packs in a new
+        window.
       </p>
       <div className="booking-actions">
-        {(Object.keys(WIDGETS)).map((key) => (
-          <button
-            key={key}
-            type="button"
-            className="booking-actions__btn"
-            onClick={() => setActive(key)}
-          >
-            {WIDGETS[key].label}
-          </button>
-        ))}
+        <button
+          type="button"
+          className="booking-actions__btn booking-actions__btn--image"
+          style={{ "--booking-bg": `url(${CLASS_SCHEDULE_BG})` }}
+          onClick={scrollToCalendar}
+        >
+          <span className="booking-actions__btn-overlay" aria-hidden />
+          <span className="booking-actions__btn-label">Class schedule</span>
+        </button>
+
+        <button
+          type="button"
+          className="booking-actions__btn booking-actions__btn--image booking-actions__btn--passes"
+          style={{ "--booking-bg": `url(${PASSES_BG})` }}
+          onClick={() => setActive("pass")}
+        >
+          <span className="booking-actions__btn-overlay" aria-hidden />
+          <span className="booking-actions__btn-label">Passes</span>
+        </button>
+
+        {/* Private sessions — enable when image + BSPORT_PRIVATE_SESSIONS are ready
+        <button
+          type="button"
+          className="booking-actions__btn booking-actions__btn--image"
+          style={{ "--booking-bg": "url(/hero-images/…)" }}
+          onClick={() => setActive("private")}
+        >
+          <span className="booking-actions__btn-overlay" aria-hidden />
+          <span className="booking-actions__btn-label">Private sessions</span>
+        </button>
+        */}
       </div>
 
       {active ? (
@@ -83,7 +112,7 @@ export default function BookingSection() {
           <div className="booking-modal__panel">
             <div className="booking-modal__header">
               <h3 className="booking-modal__title" id={titleId}>
-                {WIDGETS[active].label}
+                {MODAL_WIDGET[active].label}
               </h3>
               <button
                 type="button"
@@ -97,7 +126,7 @@ export default function BookingSection() {
             <div className="booking-modal__body">
               <div
                 key={active}
-                id={WIDGETS[active].config.parentElement}
+                id={MODAL_WIDGET[active].config.parentElement}
                 className="booking-modal__mount"
               />
             </div>

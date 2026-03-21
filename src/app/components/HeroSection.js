@@ -24,8 +24,8 @@ export default function HeroSection({ images }) {
         <div className="hero__content">
           <h1 className="hero__title">Inner Tide Studios</h1>
           <p className="hero__tagline">
-            Mindful, strength-focused Reformer Pilates in the heart of
-            Finnieston. Find your balance in Glasgow’s West End.
+            Reformer Pilates Studio Finneston A space to strengthen the body and
+            Soften the Mind
           </p>
         </div>
       </section>
@@ -57,12 +57,12 @@ export default function HeroSection({ images }) {
       <div className="hero__content">
         <h1 className="hero__title">Inner Tide Studios</h1>
         <p className="hero__tagline">
-          Mindful, strength-focused Reformer Pilates in the heart of Finnieston.
-          Find your balance in Glasgow’s West End.
+          Reformer Pilates Studio Finneston <br />A space to strengthen the body
+          and Soften the Mind
         </p>
 
         <Link href="/#booking" className="hero__button">
-          Book a session
+          Book a class
         </Link>
       </div>
     </section>

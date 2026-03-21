@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import BookingPlaceholderSection from "./components/BookingPlaceholderSection";
 import BookingSection from "./components/BookingSection";
+import CalendarEmbedSection from "./components/CalendarEmbedSection";
 import GallerySection from "./components/GallerySection";
 import FindUsSection from "./components/FindUsSection";
-import MemberProfileGate from "./components/MemberProfileGate";
-import MemberProfileSection from "./components/MemberProfileSection";
 import HeroSection from "./components/HeroSection";
 import SiteHeader from "./components/SiteHeader";
 
@@ -103,10 +101,7 @@ export default function Home() {
         </section>
 
         <GallerySection images={galleryImages} />
-        {/* <BookingPlaceholderSection /> */}
-        <MemberProfileGate>
-          <MemberProfileSection />
-        </MemberProfileGate>
+        <CalendarEmbedSection />
         <FindUsSection />
       </main>
 
