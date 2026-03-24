@@ -57,8 +57,8 @@ export default function HeroSection({ images }) {
       <div className="hero__content">
         <h1 className="hero__title">Inner Tide Studios</h1>
         <p className="hero__tagline">
-          Reformer Pilates Studio Finneston <br />A space to strengthen the body
-          and Soften the Mind
+          Reformer Pilates Studio Finnieston <br />A space to strengthen the
+          body and Soften the Mind
         </p>
 
         <Link href="/#booking" className="hero__button">
