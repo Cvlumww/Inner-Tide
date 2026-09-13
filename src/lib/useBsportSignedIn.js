@@ -64,7 +64,7 @@ export function useBsportSignedIn() {
   }, []);
 
   useEffect(() => {
-    refresh();
+    const initialRefresh = window.requestAnimationFrame(refresh);
 
     const onStorage = (e) => {
       if (e.storageArea === localStorage || e.storageArea === sessionStorage)
@@ -92,6 +92,7 @@ export function useBsportSignedIn() {
     const interval = window.setInterval(refresh, 2500);
 
     return () => {
+      window.cancelAnimationFrame(initialRefresh);
       window.removeEventListener("storage", onStorage);
       window.removeEventListener("focus", refresh);
       document.removeEventListener("visibilitychange", onVisible);

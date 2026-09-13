@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import Link from "next/link";
 import ArticleCard from "./components/ArticleCard";
 import BookingSection from "./components/BookingSection";
 import CalendarEmbedSection from "./components/CalendarEmbedSection";
@@ -114,9 +115,9 @@ export default async function Home() {
                 <p className="content-hero__eyebrow">Move with purpose</p>
                 <h2 className="section-heading">Featured services</h2>
               </div>
-              <a href="/services" className="text-link">
+              <Link href="/services" className="text-link">
                 View all services
-              </a>
+              </Link>
             </div>
             <div className="content-grid">
               {services.slice(0, 3).map((service) => (
@@ -133,9 +134,9 @@ export default async function Home() {
                 <p className="content-hero__eyebrow">From the studio</p>
                 <h2 className="section-heading">Latest articles</h2>
               </div>
-              <a href="/blog" className="text-link">
+              <Link href="/blog" className="text-link">
                 Visit the blog
-              </a>
+              </Link>
             </div>
             <div className="content-grid">
               {posts.map((post) => (
