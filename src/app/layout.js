@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import BsportScriptLoader from "./components/BsportScriptLoader";
+import JsonLd from "./components/JsonLd";
+import { businessSchema } from "@/lib/schema";
+import { getSiteUrl } from "@/lib/site";
 import "./main.scss";
 
 const geistSans = Geist({
@@ -13,10 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://inner-tide.studio"),
-  title: "Inner Tide Studios | Reformer Pilates, Finnieston Glasgow",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: "Inner Tide Studios | Reformer Pilates, Finnieston Glasgow",
+    template: "%s | Inner Tide Studios",
+  },
   description:
     "Inner Tide Studios | Glasgow's newest Reformer Pilates studio. Located in the West End of Glasgow. Book your session now.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.ico",
   },
@@ -36,6 +45,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <JsonLd data={businessSchema()} />
         <BsportScriptLoader />
         {children}
       </body>

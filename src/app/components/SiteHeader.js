@@ -7,11 +7,13 @@ import BsportEmbed from "./BsportEmbed";
 import { BSPORT_LOGIN } from "@/lib/bsport-configs";
 
 const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#booking", label: "Booking" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "/#about", label: "About" },
+  { href: "/services", label: "Services", isRoute: true },
+  { href: "/blog", label: "Blog", isRoute: true },
+  { href: "/news", label: "News", isRoute: true },
+  { href: "/#booking", label: "Booking" },
   { href: "/member", label: "Member", isRoute: true },
-  { href: "#find-us", label: "Find Us" },
+  { href: "/#find-us", label: "Find Us" },
 ];
 
 export default function SiteHeader() {

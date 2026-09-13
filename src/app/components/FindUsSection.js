@@ -30,7 +30,7 @@ export default function FindUsSection() {
         <div className="find-us__map-wrap">
           <iframe
             src={mapSrc}
-            title="Map showing Inner Tide Studios at 17 Fitzroy Place, Glasgow"
+            title="Map showing Inner Tide Studios at 16 Fitzroy Place, Glasgow"
             className="find-us__map"
             allowFullScreen
             loading="lazy"
