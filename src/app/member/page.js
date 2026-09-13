@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MemberProfileSection from "../components/MemberProfileSection";
+import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
 export const metadata = {
@@ -22,15 +23,7 @@ export default function MemberPage() {
         <MemberProfileSection />
       </main>
 
-      <footer className="site-footer">
-        <p>
-          Inner Tide Studios — Reformer Pilates, 16 Fitzroy Place, Second Floor,
-          Finnieston, Glasgow, G3 7RW
-        </p>
-        <p className="site-footer__link">
-          Website by <Link href="https://calum.work">Calum Fraser Wardrop</Link>
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

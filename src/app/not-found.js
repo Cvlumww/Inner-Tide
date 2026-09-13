@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import NotFoundSection from "./components/NotFoundSection";
+import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
 
 function getHeroImages() {
@@ -29,9 +30,7 @@ export default function Home() {
 
       <NotFoundSection images={heroImages} />
 
-      <footer className="site-footer">
-        <p>Inner Tide Studios — Reformer Pilates, Finnieston, Glasgow</p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

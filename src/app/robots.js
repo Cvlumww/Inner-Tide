@@ -1,9 +1,14 @@
+import { getSiteUrl } from "@/lib/site";
+
 export default function robots() {
+  const siteUrl = getSiteUrl();
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/api/"],
     },
-    sitemap: "https://inner-tide.studio/sitemap.xml",
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

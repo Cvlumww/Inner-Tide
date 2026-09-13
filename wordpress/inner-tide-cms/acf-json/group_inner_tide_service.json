@@ -1,0 +1,123 @@
+{
+  "key": "group_inner_tide_service",
+  "title": "Service details",
+  "fields": [
+    {
+      "key": "field_service_summary",
+      "label": "Summary",
+      "name": "summary",
+      "type": "textarea",
+      "instructions": "A short introduction shown near the service title.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": "br",
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_benefits",
+      "label": "Benefits",
+      "name": "benefits",
+      "type": "repeater",
+      "instructions": "Add one clear benefit per row.",
+      "required": 0,
+      "layout": "table",
+      "button_label": "Add benefit",
+      "show_in_rest": 1,
+      "sub_fields": [
+        {
+          "key": "field_service_benefit_text",
+          "label": "Benefit",
+          "name": "text",
+          "type": "text",
+          "required": 1,
+          "parent_repeater": "field_service_benefits"
+        }
+      ]
+    },
+    {
+      "key": "field_service_suitability",
+      "label": "Who it is for",
+      "name": "suitability",
+      "type": "textarea",
+      "required": 0,
+      "rows": 4,
+      "new_lines": "wpautop",
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_duration",
+      "label": "Duration",
+      "name": "duration",
+      "type": "text",
+      "instructions": "For example: 50 minutes.",
+      "required": 0,
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_price",
+      "label": "Price",
+      "name": "price",
+      "type": "text",
+      "instructions": "Display text, for example: From £20.",
+      "required": 0,
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_booking_label",
+      "label": "Booking button label",
+      "name": "booking_label",
+      "type": "text",
+      "default_value": "Book now",
+      "required": 0,
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_booking_url",
+      "label": "Booking URL",
+      "name": "booking_url",
+      "type": "url",
+      "required": 0,
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_gallery",
+      "label": "Gallery",
+      "name": "gallery",
+      "type": "gallery",
+      "required": 0,
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all",
+      "show_in_rest": 1
+    },
+    {
+      "key": "field_service_featured",
+      "label": "Feature this service",
+      "name": "featured",
+      "type": "true_false",
+      "instructions": "Featured services can appear on the homepage.",
+      "default_value": 0,
+      "ui": 1,
+      "show_in_rest": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [],
+  "active": true,
+  "description": "Structured fields consumed by the Inner Tide frontend.",
+  "show_in_rest": 1,
+  "modified": 1789315200
+}

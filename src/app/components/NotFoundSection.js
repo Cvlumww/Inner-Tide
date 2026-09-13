@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const ROTATE_MS = 5000;
 
-export default function notFoundSection({ images }) {
+export default function NotFoundSection({ images }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

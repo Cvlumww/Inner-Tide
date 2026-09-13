@@ -7,11 +7,13 @@ import BsportEmbed from "./BsportEmbed";
 import { BSPORT_LOGIN } from "@/lib/bsport-configs";
 
 const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#booking", label: "Booking" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "/member", label: "Member", isRoute: true },
-  { href: "#find-us", label: "Find Us" },
+  { href: "/#about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
+  { href: "/news", label: "News" },
+  { href: "/#booking", label: "Booking" },
+  { href: "/member", label: "Member" },
+  { href: "/#find-us", label: "Find Us" },
 ];
 
 export default function SiteHeader() {
@@ -23,7 +25,7 @@ export default function SiteHeader() {
 
   return (
     <header className="site-header">
-      <a href="/" aria-label="Inner Tide Studios home">
+      <Link href="/" aria-label="Inner Tide Studios home">
         <Image
           src="/logos/cream.png"
           alt="Inner Tide Studios"
@@ -33,7 +35,7 @@ export default function SiteHeader() {
           priority
           quality={90}
         />
-      </a>
+      </Link>
 
       <div className="site-header__end">
         <nav
@@ -42,17 +44,11 @@ export default function SiteHeader() {
           aria-label="Main"
         >
           <ul className="site-header__nav-list">
-            {NAV_LINKS.map(({ href, label, isRoute }) => (
+            {NAV_LINKS.map(({ href, label }) => (
               <li key={href}>
-                {isRoute ? (
-                  <Link href={href} onClick={handleNavClick}>
-                    {label}
-                  </Link>
-                ) : (
-                  <a href={href} onClick={handleNavClick}>
-                    {label}
-                  </a>
-                )}
+                <Link href={href} onClick={handleNavClick}>
+                  {label}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,12 +1,16 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
+import ArticleCard from "./components/ArticleCard";
 import BookingSection from "./components/BookingSection";
 import CalendarEmbedSection from "./components/CalendarEmbedSection";
 import GallerySection from "./components/GallerySection";
 import FindUsSection from "./components/FindUsSection";
 import HeroSection from "./components/HeroSection";
+import ServiceCard from "./components/ServiceCard";
+import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
+import { getPosts, getServices } from "@/lib/wordpress";
 
 function getGalleryImages() {
   try {
@@ -38,9 +42,13 @@ function getHeroImages() {
   }
 }
 
-export default function Home() {
+export default async function Home() {
   const galleryImages = getGalleryImages();
   const heroImages = getHeroImages();
+  const [posts, services] = await Promise.all([
+    getPosts({ limit: 3 }),
+    getServices({ featuredOnly: true }),
+  ]);
 
   return (
     <div className="page">
@@ -100,20 +108,50 @@ export default function Home() {
           <BookingSection />
         </section>
 
+        {services.length > 0 && (
+          <section className="section home-content-section">
+            <div className="home-content-section__heading">
+              <div>
+                <p className="content-hero__eyebrow">Move with purpose</p>
+                <h2 className="section-heading">Featured services</h2>
+              </div>
+              <Link href="/services" className="text-link">
+                View all services
+              </Link>
+            </div>
+            <div className="content-grid">
+              {services.slice(0, 3).map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {posts.length > 0 && (
+          <section className="section home-content-section">
+            <div className="home-content-section__heading">
+              <div>
+                <p className="content-hero__eyebrow">From the studio</p>
+                <h2 className="section-heading">Latest articles</h2>
+              </div>
+              <Link href="/blog" className="text-link">
+                Visit the blog
+              </Link>
+            </div>
+            <div className="content-grid">
+              {posts.map((post) => (
+                <ArticleCard key={post.id} post={post} />
+              ))}
+            </div>
+          </section>
+        )}
+
         <GallerySection images={galleryImages} />
         <CalendarEmbedSection />
         <FindUsSection />
       </main>
 
-      <footer className="site-footer">
-        <p>
-          Inner Tide Studios — Reformer Pilates, 16 Fitzroy Place, Second Floor,
-          Finnieston, Glasgow, G3 7RW
-        </p>
-        <p className="site-footer__link">
-          Website by <Link href="https://calum.work">Calum Fraser Wardrop</Link>
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
